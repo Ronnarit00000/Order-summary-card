@@ -1,0 +1,275 @@
+:root {
+
+    /* font=family */
+    --ff-base : "Red Hat Display", serif;
+    
+    /* font-size */
+    --fs-700  :  clamp(1.375rem, 1.7953rem + -0.0647vw, 1.75rem);
+    --fs-400  :  clamp(0.9375rem, 1.0075rem + -0.0108vw, 1rem); 
+    --fs-300  :  clamp(0.8125rem, 0.8825rem + -0.0108vw, 0.875rem);
+
+    /* font-weight */
+    --fw-black  : 900;
+    --fw-bold   : 700;
+    --fw-medium : 500;
+
+    /* color */
+    --clr-white       : hsl(0, 0%, 100%);
+    --clr-pale-blue   : hsl(225, 100%, 94%);
+    --clr-blue        : hsl(245, 75%, 52%);
+    --clr-neutral-100 : hsl(225, 100%, 98%);
+    --clr-neutral-300 : hsl(224,  23%, 55%);
+    --clr-neutral-600 : hsl(223,  47%, 23%);
+}
+
+/* ------------------------------------------------------------------------ */
+/*                                 Boilerplate                              */
+/* ------------------------------------------------------------------------ */
+
+/* set box-sizing */
+*,
+*::before, 
+*::after {
+    box-sizing: border-box;
+}
+
+/* reset margin */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+body {
+    margin:0;
+}
+
+/* set up the body */
+body {
+    font-family: var(--ff-base);
+
+    min-height : 100dvh;
+    display: grid;
+    place-items: center;
+}
+
+/* Reset list-style */
+ul[type = "role"] {list-style: none;}
+
+/* Reset text-decoration*/
+ul[type = "role"] a {text-decoration: none;}
+
+/* Make images easier to work with */
+img,
+picture {
+    object-fit: cover;
+    display: block;
+    width: 100%;
+}
+
+/* Make form elements to work with */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+/* remove animation for people who' ve turned them off */
+@media (prefers-reduced-motion: reduce)  {
+    *,
+    *::before,
+    *::after{
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ------------------------------------------------------------------------ */
+/*                                     Body                                 */
+/* ------------------------------------------------------------------------ */
+
+body {
+    background: url(images/pattern-background-desktop.svg);
+    background-color: hsl(226, 100%, 94%);
+    background-position: center top;
+    background-repeat: no-repeat;
+}
+
+
+/* ------------------------------------------------------------------------ */
+/*                                   button                                 */
+/* ------------------------------------------------------------------------ */
+
+.btn:is(.btn--blue) {
+    --bg-btn: var(--clr-blue);
+    --clr-btn: var(--clr-white);
+    --hover-clr-btn: hsl(0, 0%, 100%);
+    --hover-bg-btn:  hsl(245, 83%, 68%);
+}
+
+.btn:is(.btn--tranperent) {
+    --bg-btn : transparent;
+    --clr-btn: var(--clr-neutral-300);
+    --hover-bg-btn: transparent;
+    --hover-clr-btn : hsl(223, 47%, 23%);
+    --btn-padding-block  : 0;
+    --btn-padding-inline : 0;
+}
+
+.btn {
+    border-radius: 0.75rem;
+    display: block;
+    outline: none;
+    padding-block:  var(--btn-padding-block,    1rem);
+    padding-inline: var(--btn-padding-inline, 2.5rem);
+    text-decoration: none;
+    font-size:   var(--fs-400);
+    font-weight: var(--fw-black);
+    background:  var(--bg-btn);
+    color:       var(--clr-btn);
+}
+
+.btn:hover,
+.btn:focus {
+    color:      var(--hover-clr-btn);
+    background: var(--hover-bg-btn);
+}
+
+/* ------------------------------------------------------------------------ */
+/*                                   Card                                   */
+/* ------------------------------------------------------------------------ */
+
+.card:is(.card--white) {
+    --bg-card: var(--clr-white);
+}
+
+.card {
+    --space-lr: 1.5rem;
+    --card-border-radius: 0.75rem;
+
+    width: min(100% - (var(--space-lr) * 2), 450px);
+    margin-inline: auto;
+    background-color: var(--bg-card);
+    text-align: center;
+    border-radius: var(--card-border-radius);
+    box-shadow: 0 1.25rem  1.5rem -0.125rem hsla(221, 75%, 52%, 0.205);
+}
+
+/* ------------------------------------------------------------------------ */
+/*                                Card-Image                                */
+/* ------------------------------------------------------------------------ */
+
+.card-Image {
+    min-height: 160px;
+    border-top-right-radius: var(--card-border-radius);
+    border-top-left-radius:  var(--card-border-radius);
+}
+
+/* ------------------------------------------------------------------------ */
+/*                            Card-Description                              */
+/* ------------------------------------------------------------------------ */
+
+.card-Description {
+    min-height: 404px;
+    padding-inline: 1.5rem;
+    padding-block:    2rem;
+    display: grid;
+    grid-template-rows: min-content 1fr max-content max-content max-content;
+    row-gap: 1.5rem;
+
+    border-bottom-right-radius: var(--card-border-radius);
+    border-bottom-left-radius:  var(--card-border-radius);
+}
+
+.card-Description .title {
+    font-size: var(--fs-700);
+    font-weight: var(--fw-black);
+}
+
+.card-Description .info {
+    font-size:   var(--fs-400);
+    font-weight: var(--fw-medium);
+    color: var(--clr-neutral-300);
+    line-height: 25px;
+}
+
+/* ------------------------------------------------------------------------ */
+/*                        Card-Description Price                            */
+/* ------------------------------------------------------------------------ */
+
+.card-Description .price {
+    padding-block:  1rem;
+    padding-inline: 1rem;
+    border-radius: 0.75rem;
+
+    display: grid;
+    grid-template-columns: max-content 1fr max-content;
+    grid-auto-rows: max-content;
+    align-items: center;
+    justify-items: start;
+    row-gap: 0.375rem;
+    column-gap: 1rem;
+    
+    background-color: var(--clr-neutral-100);
+}
+
+.card-Description .price img {
+    grid-column:      1;
+    grid-row:   1 / span 2;
+
+    width:  3rem;
+    height: 3rem;
+    object-fit: scale-down;
+}
+
+.card-Description .price h4 {
+    grid-column: 2;
+    font-size: var(--fw-black);
+    font-size: var(--fs-400);
+}
+
+.card-Description .price p {
+    grid-column: 2;
+    font-size: var(--fs-300);
+    font-weight: var(--fw-medium);
+    color: var(--clr-neutral-300);
+}
+
+.card-Description .price a {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+
+    display: inline-block;
+    font-size: var(--fs-300);
+    font-weight: var(--fw-black);
+    color: var(--clr-blue);
+}
+
+.card-Description .price a:focus,
+.card-Description .price a:hover {
+    color: hsl(245, 83%, 68%);
+    text-decoration: none;
+}
+
+@media (min-width:650px) {
+    .card-Image {
+        min-height: 220px;
+    }
+    
+    .card-Description {
+        padding-inline: 3rem;
+        padding-block:  3rem;
+        row-gap: 1.55rem;
+    }
+
+    .card-Description .price {
+        padding-inline: 1.5rem;
+        padding-block: 1.5rem;
+    }
+}
+
+
